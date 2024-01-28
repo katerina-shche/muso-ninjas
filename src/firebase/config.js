@@ -35,7 +35,7 @@ const app = initializeApp(firebaseConfig);
 // Init serveses
 
 const projectFirestore = getFirestore(app)
-const projectAuth = getAuth(app)
+const projectAuth = getAuth()
 
 //init timestamp
 

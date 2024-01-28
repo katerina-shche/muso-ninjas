@@ -23,7 +23,7 @@ const getCollection = (collectionName) => {
     const unsubCol = onSnapshot(colQuery, (snapshot) => {
         console.log('snapshot!!!')
         let results = []
-        snapshot.docs.forEach((doc) => {
+        snapshot.docs.forEach(doc => {
             //wait data go to server and timestamp be set properly
             doc.data().createdAt && results.push({ ...doc.data(), id: doc.id })
         })
