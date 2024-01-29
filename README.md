@@ -17,3 +17,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+vue biuld into dist folder so during firestore init we set dist as well: 
+? What do you want to use as your public directory? dist 
