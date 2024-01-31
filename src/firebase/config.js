@@ -18,6 +18,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged
 } from 'firebase/auth'
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -36,9 +37,23 @@ const app = initializeApp(firebaseConfig);
 
 const projectFirestore = getFirestore(app)
 const projectAuth = getAuth()
+const projectStorage = getStorage()
+
 
 //init timestamp
 
 const timestamp = serverTimestamp
 
-export { projectAuth, projectFirestore, timestamp }
+// Storage refs
+const storageRef = ref(projectStorage);
+
+// Create a child reference
+const imagesRef = ref(projectStorage, 'images');
+// imagesRef now points to 'images'
+
+// Child references can also take paths delimited by '/'
+const spaceRef = ref(projectStorage, 'images/space.jpg');
+// spaceRef now points to "images/space.jpg"
+// imagesRef still points to "images" 
+
+export { projectAuth, projectFirestore, projectStorage, timestamp }
