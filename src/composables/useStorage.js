@@ -1,4 +1,6 @@
-import { projectStorage } from "@/firebase/config"
+
+import { projectStorage } from '@/firebase/config.js'
+import { ref as storeRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { ref } from 'vue'
 import { getUser } from '@/composables/getUser'
 
@@ -11,13 +13,13 @@ const useStorage = () => {
 
     const uploadImage = async (file) => {
         filePath.value = `covers/${user.value.uid}/${file.name}`
-        const storageRef = ref(projectStorage, filePath.value)
+        const storageRef = storeRef(projectStorage, filePath.value)
 
         try {
             const res = await uploadBytes(storageRef, file)
                 console.log('Uploaded a blob or file!');
                 console.log(res)
-                url.value = res.ref.getDownloadURL()
+                url.value = await getDownloadURL(res.ref)
               
         } catch(err) {
             console.log(err.message)
