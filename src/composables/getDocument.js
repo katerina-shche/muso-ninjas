@@ -6,7 +6,8 @@ import {
     //getDocs,
     onSnapshot,
     addDoc, 
-    //deleteDoc, doc,
+    //deleteDoc, 
+    doc,
     query,
     //where,
     orderBy,
@@ -18,8 +19,8 @@ const getDocument = (collectionName, id) => {
     const document = ref(null)
     const error = ref(null)
 
-    let colRef = collection(projectFirestore, collectionName)
-    let docRef = doc(projectFirestore, colRef, id)
+    let docRef = doc(projectFirestore, collectionName, id)
+    
     const unsubDoc = onSnapshot(docRef, (doc) => {
         if(doc.data()) {
         document.value = { ...doc.data(), id: doc.id}
