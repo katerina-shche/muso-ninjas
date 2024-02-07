@@ -45,7 +45,7 @@
             const handleSubmit = async () => {
                 if (file.value) {
                 isPending.value = true    
-                await uploadImage(file.value)
+                await uploadImage(file.value, title.value)
                 const res = await projectAddDoc({
                     title: title.value,
                     description: description.value,

@@ -11,8 +11,8 @@ const useStorage = () => {
     const url = ref(null)
     const filePath = ref(null)
 
-    const uploadImage = async (file) => {
-        filePath.value = `covers/${user.value.uid}/${file.name}`
+    const uploadImage = async (file, title) => {
+        filePath.value = `covers/${user.value.uid}/${file.name}-for-${title}`
         const storageRef = storeRef(projectStorage, filePath.value)
 
         try {
