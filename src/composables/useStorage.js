@@ -27,7 +27,11 @@ const useStorage = () => {
         }
     }
 
-    return { url, filePath, error, uploadImage }
+    const deleteImage = async (path) => {
+
+    }
+
+    return { url, filePath, error, uploadImage, deleteImage }
 }
 
 export { useStorage }
