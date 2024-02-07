@@ -1,6 +1,6 @@
 
 import { projectStorage } from '@/firebase/config.js'
-import { ref as storeRef, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref as storeRef, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { ref } from 'vue'
 import { getUser } from '@/composables/getUser'
 
@@ -28,6 +28,14 @@ const useStorage = () => {
     }
 
     const deleteImage = async (path) => {
+        const storageRef = storeRef(projectStorage, path)
+        try {
+            await deleteObject(storageRef)
+        } catch(err) {
+            console.log(err.message)
+            error.value = err.message
+        }
+        
 
     }
 
