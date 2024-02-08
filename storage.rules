@@ -11,3 +11,6 @@ service firebase.storage {
     }
   }
 }
+
+// to deploy run in terminal:
+// firebase deploy --only storage
