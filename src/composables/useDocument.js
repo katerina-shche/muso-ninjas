@@ -9,7 +9,8 @@ import {
     deleteDoc, doc,
     //query, where,
     //orderBy, serverTimestamp,
-    //getDoc, updateDoc
+    //getDoc, 
+    updateDoc
 } from 'firebase/firestore'
 
 const useDocument = (collectionName, id) => {
@@ -33,7 +34,22 @@ const useDocument = (collectionName, id) => {
         }
     }
 
-    return { error, isPending, deleteDocument }
+    const updateDocument = async (updates) => {
+        error.value = null
+        isPending.value = true
+
+        try {
+            //deleteDoc returns a promise with info about succes/not but it does not contain any data obj to use
+            await updateDoc(docRef, updates)
+            isPending.value = false
+        } catch (err) {
+            console.log(err.message)
+            isPending.value = false
+            error.value = 'could not update the document'
+        }
+    }
+
+    return { error, isPending, deleteDocument, updateDocument }
 }
 
 export { useDocument }

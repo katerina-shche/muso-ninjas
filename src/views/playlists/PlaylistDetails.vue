@@ -16,6 +16,7 @@
             <!-- song list -->
             <div class="song-list">
                 <p>song list here</p>
+                <AddSong v-if="ownership" :playlist="playlist" />
             </div>  
         </div>
     </div>
@@ -26,10 +27,12 @@ import { useStorage } from '@/composables/useStorage'
 import { useDocument } from "@/composables/useDocument"
 import { getDocument } from "@/composables/getDocument"
 import { getUser } from "@/composables/getUser"
+import AddSong from "@/components/AddSong.vue"
 import { computed } from "vue"
 import { useRouter } from 'vue-router'
 
     export default {
+        components: { AddSong },
         props: ['id'],
         setup(props) {
             const { user } = getUser()
