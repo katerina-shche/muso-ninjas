@@ -8,19 +8,22 @@ import {
     addDoc, 
     //deleteDoc, doc,
     query,
-    //where,
+    where,
     orderBy,
     //serverTimestamp,
     //getDoc, updateDoc
 } from 'firebase/firestore'
 
-const getCollection = (collectionName) => {
+const getCollection = (collectionName, queryArgs) => {
     const documents = ref(null)
     const error = ref(null)
 
     let colRef = collection(projectFirestore, collectionName)
-    let colQuery = query(colRef, orderBy('createdAt'))
-    const unsubCol = onSnapshot(colQuery, (snapshot) => {
+    let orderedCol = query(colRef, orderBy('createdAt'))
+    if(queryArgs) {
+        orderedCol = query(orderedCol, where(...queryArgs))
+    }
+    const unsubCol = onSnapshot(orderedCol, (snapshot) => {
         console.log('snapshot!!!')
         let results = []
         snapshot.docs.forEach(doc => {

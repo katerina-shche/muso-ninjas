@@ -32,7 +32,7 @@
                     console.log('logged in succesfully')
                     email.value = ''
                     password.value = ''
-                    router.push({ name: 'Home'})
+                    router.push({ name: 'UserPlaylists'})
                 } else {
                     console.log(error.value)
                 }
